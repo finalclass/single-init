@@ -1,6 +1,6 @@
 declare var console:any;
 
-class SingleInit<T> {
+export default class SingleInit<T> {
 
     private callbacks: ((err: Error, result: T) => void)[] = [];
     private state: 'cold' | 'initializing' | 'complete' = 'cold';
@@ -55,5 +55,3 @@ class SingleInit<T> {
     }
 
 }
-
-export = SingleInit;
