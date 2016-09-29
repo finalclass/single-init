@@ -1,13 +1,14 @@
 {
   "name": "single-init",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Initialize things once",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
+    "prepublish": "npm run compile",
     "test": "jasmine-node tests",
-    "build": "tsc",
-    "build-and-test": "npm run build --loglevel=silent && npm test --loglevel=silent",
+    "compile": "tsc",
+    "compile-and-test": "npm run build --loglevel=silent && npm test --loglevel=silent",
     "watch": "watch \"npm run build-and-test\" src/"
   },
   "engines": {
