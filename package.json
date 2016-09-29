@@ -1,0 +1,35 @@
+{
+  "name": "single-init",
+  "version": "1.0.0",
+  "description": "Initialize things once",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "test": "jasmine-node tests",
+    "build": "tsc",
+    "build-and-test": "npm run build --loglevel=silent && npm test --loglevel=silent",
+    "watch": "watch \"npm run build-and-test\" src/"
+  },
+  "engines": {
+    "node": "> 0.12"
+  },
+  "devDependencies": {
+    "jasmine-node": "1.14.5",
+    "typescript": "2.0.3",
+    "watch": "0.19.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/finalclass/single-init.git"
+  },
+  "keywords": [
+    "singleton",
+    "initialization"
+  ],
+  "author": "Szymon Wygnański",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/finalclass/single-init/issues"
+  },
+  "homepage": "https://github.com/finalclass/single-init#readme"
+}
