@@ -10,6 +10,10 @@ npm install single-init --save
 ## Example usage:
 
 ```js
+var SingleInit = require('sinlge-init').default;
+//or, for modern sutff:
+import SingleInit from 'single-init';
+
 var products = new SingleInit(function initFunction(done) {
     db.getProducts(done);
 });

@@ -1,4 +1,4 @@
-var SingleInit = require('../dist/index');
+var SingleInit = require('../dist/index').default;
 
 describe('single-init', function () {
 
