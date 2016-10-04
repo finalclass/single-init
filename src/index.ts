@@ -3,7 +3,7 @@ declare var console:any;
 export default class SingleInit<T> {
 
     private callbacks: ((err: Error, result: T) => void)[] = [];
-    private state: 'cold' | 'initializing' | 'complete' = 'cold';
+    private _state: 'cold' | 'initializing' | 'complete' = 'cold';
     private resultErr: Error = null;
     private result: T = null;
 
@@ -22,21 +22,25 @@ export default class SingleInit<T> {
                     callback(null, data);
                 }
             }
-            if (this.state === 'complete') {
+            if (this._state === 'complete') {
                 return callbackWrapped(this.resultErr, this.result);
             }
             //if it's initializing then callback will be called anyway:
             this.callbacks.push(callbackWrapped);
-            if (this.state === 'cold') {
+            if (this._state === 'cold') {
                 this.initialize();
             }
         });
     }
 
+    public get state() {
+        return this._state;
+    }
+
     private initialize() {
-        this.state = 'initializing';
+        this._state = 'initializing';
         this.initFunc((err: Error, result: T) => {
-            this.state = 'complete';
+            this._state = 'complete';
             if (err) {
                 this.resultErr = err;
                 this.callCallbacks();

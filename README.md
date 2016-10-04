@@ -39,6 +39,12 @@ try {
 } catch (err) {
     //on products.get error
 }
+
+//You can read state:
+
+products.get();
+console.log(products.state); // will print out 'initaliznig';
+//state may be one of: 'cold', 'initaliznig', 'complete'
 ```
 
 In the above examples `initFunction` will be called only **once**
