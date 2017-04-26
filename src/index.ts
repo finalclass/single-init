@@ -1,4 +1,4 @@
-declare var console:any;
+declare var console: any;
 
 export default class SingleInit<T> {
 
@@ -11,7 +11,7 @@ export default class SingleInit<T> {
         private initFunc: (done: (err: Error, result?: T) => void) => void
     ) { }
 
-    public get(callback: (err: Error, result?: T) => void = (err) => { }): Promise<T> {
+    public get(callback: (err: Error | null, result?: T) => void = (err) => { }): Promise<T> {
         return new Promise((resolve, reject) => {
             function callbackWrapped(err, data) {
                 if (err) {
