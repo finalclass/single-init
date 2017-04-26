@@ -2,13 +2,13 @@ declare var console: any;
 
 export default class SingleInit<T> {
 
-    private callbacks: ((err: Error, result: T) => void)[] = [];
+    private callbacks: ((err: Error | null, result: T) => void)[] = [];
     private _state: 'cold' | 'initializing' | 'complete' = 'cold';
     private resultErr: Error = null;
     private result: T = null;
 
     constructor(
-        private initFunc: (done: (err: Error, result?: T) => void) => void
+        private initFunc: (done: (err: Error | null, result?: T) => void) => void
     ) { }
 
     public get(callback: (err: Error | null, result?: T) => void = (err) => { }): Promise<T> {
@@ -39,7 +39,7 @@ export default class SingleInit<T> {
 
     private initialize() {
         this._state = 'initializing';
-        this.initFunc((err: Error, result: T) => {
+        this.initFunc((err: Error | null, result: T) => {
             this._state = 'complete';
             if (err) {
                 this.resultErr = err;
